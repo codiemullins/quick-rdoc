@@ -1,0 +1,10 @@
+{
+  "manifest_version": 2,
+  "name": "Quick RDoc",
+  "description": "This extension makes it easy to access Ruby Doc for classes",
+  "version": "1.0",
+  "background": {
+    "scripts": ["ruby-classes.js"]
+  },
+  "omnibox": { "keyword" : "rdoc" }
+}
