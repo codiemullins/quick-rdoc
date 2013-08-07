@@ -59,7 +59,7 @@ chrome.omnibox.onInputChanged.addListener (text, suggest) ->
 # This event is fired when the user acceps the input in the omnibox
 chrome.omnibox.onInputEntered.addListener (text) ->
 
-  if text.contains("http") isnt -1
+  if text.contains("http")
     navigate text
   else
     search text, (elements) ->
