@@ -12,6 +12,6 @@ not taking me to specific classes and using it multiple times a day I decided to
 write an extension to speed up my lookups on the site.
 
 ## TODO
-- Create settings page with options:
-  - Set default Ruby version
+- ~~Create settings page with options:~~ DONE
+  - ~~Set default Ruby version~~ DONE
 - Allow user to change version in Omnibox (need to come up with syntax)

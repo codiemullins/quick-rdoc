@@ -4,7 +4,14 @@
   "description": "This extension makes it easy to access Ruby Doc for classes",
   "version": "1.0",
   "background": {
+    "persistent": false,
     "scripts": ["ruby-classes.js"]
   },
-  "omnibox": { "keyword" : "rdoc" }
+  "options_page": "options.html",
+  "omnibox": { "keyword" : "rdoc" },
+  "icons": {
+    "16":  "16-color.png",
+    "48":  "48-color.png",
+    "128": "48-color.png"
+  }
 }

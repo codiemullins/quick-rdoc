@@ -1,0 +1,7 @@
+Notes:
+
+Regex search to build stdlib.json
+Find:
+<tr> *\n<td class=\"letter\">[A-Z]?</td> *\n<td> <a href="([A-z0-9\-\/]*.html)" class="mature" target="_top">([A-z0-9\-\/]*)</a> *</td> *\n</tr>
+Replace: 
+{"urlpath": "$1", "name": "$2", "version": ["2.0"]},

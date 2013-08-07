@@ -1,6 +1,10 @@
-root_url = "http://ruby-doc.org/core-2.0/";
-version = "Ruby Core 2.0"
-json_file = "ruby-classes.json"
+ruby_version = root_url = version = json_file = ""
+
+String.prototype.contains = (str, startIndex=0) ->
+  -1 isnt String.prototype.indexOf.call @.toLowerCase(), str.toLowerCase(), startIndex
+
+Array.prototype.contains = (str) ->
+  -1 isnt Array.prototype.indexOf.call @, str
 
 set_description = (name,url) ->
   "<match>#{name}</match> <dim>#{version} - </dim><url>#{url}</url>"
@@ -17,18 +21,26 @@ search = (query, callback) ->
     if req.readyState == 4
       json = JSON.parse req.response
       window.test = json['classes'].filter (e,i,a) ->
-        re = new RegExp query, 'gi'
-        e if Object.prototype.toString.call(e.name.match(re)) == '[object Array]'
-        
+        e if find_match(e, query)
+
       callback window.test
   req.send null
   req
+
+find_match = (element, query) ->
+  element['name'].contains(query) and element['versions'].contains(ruby_version)
   
 updateDefaultSuggestion = (element) ->
   url = "#{root_url}#{element['urlpath']}"
   chrome.omnibox.setDefaultSuggestion({
     description: set_description element['name'], url
   })
+
+chrome.omnibox.onInputStarted.addListener ->
+  ruby_version = if localStorage['ruby_version'] is undefined then '2.0' else localStorage['ruby_version']
+  root_url = "http://ruby-doc.org/core-#{ruby_version}/";
+  version = "Ruby Core #{ruby_version}"
+  json_file = "ruby-classes.json"
   
 chrome.omnibox.onInputChanged.addListener (text, suggest) ->
   search text, (elements) ->
@@ -44,13 +56,10 @@ chrome.omnibox.onInputChanged.addListener (text, suggest) ->
         }
     suggest results
 
-    console.log "Input Changed: #{text}"
-
 # This event is fired when the user acceps the input in the omnibox
 chrome.omnibox.onInputEntered.addListener (text) ->
-  console.log text
-  
-  if text.indexOf("http") isnt -1
+
+  if text.contains("http") isnt -1
     navigate text
   else
     search text, (elements) ->
