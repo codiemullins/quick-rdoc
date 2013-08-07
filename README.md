@@ -9,9 +9,8 @@ Example usage: `rdoc (press tab) ar`
 After pressing enter you are taken to the Array page in Ruby-Doc.
 
 ### Installation
-Download the file `compiled.crx` from this repo to your computer. In chrome open 
-a new tab and navigate to `chrome://extensions/`. Drag the file from the 
-download location into the Extensions page. This will install the Extension.
+Install from Chrome Web Store at the following URL:
+https://chrome.google.com/webstore/detail/quick-rdoc/eimmoalljodgaailhdnaleihnahcpaom?hl=en&gl=US
 
 ### Options
 Open the options page to set the version of Ruby you are searching for. Once 
